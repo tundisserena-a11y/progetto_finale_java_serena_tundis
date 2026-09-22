@@ -1,5 +1,5 @@
 <!doctype html>
-<html xmlns:th="http://thymeleaf.org" xmlns:sec="http://thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://thymeleaf.org">
 
 <head th:fragment="head">
     <meta charset="UTF-8">
@@ -25,8 +25,9 @@
                     <li sec:authorize="isAuthenticated()" class="nav-item">
                         <a class="nav-link" th:href="@{/articles/create}">Crea articolo</a>
                     </li>
+                    <!-- Nuovo link per visualizzare l'indice di tutti gli articoli -->
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
+                        <a class="nav-link" th:href="@{/articles}">Tutti gli articoli</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -50,7 +51,7 @@
         </div>
     </nav>
 
-    <!--  Per risolvere l'errore 500 -->
+    <!-- Per risolvere l'errore 500 -->
     <footer th:fragment="footer" class="bg-light text-center text-lg-start mt-auto py-3">
         <div class="text-center p-3">
             © 2026 Aulab Chronicle
