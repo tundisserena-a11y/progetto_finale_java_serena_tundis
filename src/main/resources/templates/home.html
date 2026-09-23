@@ -18,6 +18,11 @@
         <p th:text="${successMessage}"></p>
     </div>
 
+    <!-- Blocco per mostrare il messaggio di errore della richiesta carriera -->
+    <div th:if="${errorMessage}" class="alert alert-danger">
+        <p th:text="${errorMessage}"></p>
+    </div>
+
     <div class="container-fluid">
         <div class="row min-vh-100 align-items-center">
             <div class="col-10">

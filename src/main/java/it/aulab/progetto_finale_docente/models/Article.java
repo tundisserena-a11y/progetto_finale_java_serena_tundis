@@ -50,6 +50,9 @@ public class Article {
     @NotNull
     private LocalDate publishDate;
 
+    @Column(nullable = true)
+    private Boolean isAccepted;
+
     // Relazione many to one con l'utente autore
     @ManyToOne
     @JoinColumn(name = "user_id")

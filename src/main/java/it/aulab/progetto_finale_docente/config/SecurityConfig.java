@@ -30,23 +30,34 @@ public class SecurityConfig {
         public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
                 http
                                 .csrf(csrf -> csrf.disable())
-                                .authorizeHttpRequests(
-                (authorize) -> authorize.requestMatchers("/register/**").permitAll()
-                                .requestMatchers("/register", "/", "/articles", "/images/**", "/articles/detail/**").permitAll()
-                                .anyRequest().authenticated())
+                                .authorizeHttpRequests((authorize) -> authorize
+                                                .requestMatchers("/register/**").permitAll()
+                                                .requestMatchers("/admin/dashboard", "/categories/create",
+                                                                "/categories/edit/{id}", "/categories/update/{id}",
+                                                                "/categories/delete/{id}")
+                                                .hasRole("ADMIN")
+                                                .requestMatchers("/revisor/dashboard", "/revisor/detail/{id}",
+                                                                "/accept")
+                                                .hasRole("REVISOR")
 
-                                .formLogin(form -> form.loginPage("/login")
+                                                .requestMatchers("/register", "/", "/articles", "/images/**",
+                                                                "/articles/detail/**", "/categories/search/{id}",
+                                                                "/search/{id}")
+                                                .permitAll()
+                                                .anyRequest().authenticated())
+                                .formLogin(form -> form
+                                                .loginPage("/login")
                                                 .loginProcessingUrl("/login")
                                                 .defaultSuccessUrl("/")
                                                 .permitAll())
-                                .logout(logout -> logout.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                                .logout(logout -> logout
+                                                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                                                 .permitAll())
                                 .exceptionHandling(exception -> exception.accessDeniedPage("/error/403"))
                                 .sessionManagement(session -> session
                                                 .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
                                                 .maximumSessions(1)
-                                                .expiredUrl("/login?session-expired=true"));
-
+                                                .expiredUrl("/login?session-expired-true"));
                 return http.build();
         }
 

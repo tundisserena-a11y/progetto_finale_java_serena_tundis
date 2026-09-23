@@ -15,4 +15,11 @@ public interface ArticleRepository extends ListCrudRepository<Article, Long> {
 
     // Ricerca degli articoli tramite utente autore
     List<Article> findByUser(User user);
+
+    List<Article> findByIsAcceptedTrue();
+
+    List<Article> findByIsAcceptedFalse();
+
+    List<Article> findByIsAcceptedIsNull();
+
 }
