@@ -40,6 +40,11 @@ public class SecurityConfig {
                                                                 "/accept")
                                                 .hasRole("REVISOR")
 
+                                                .requestMatchers("/writer/dashboard", "/articles/create",
+                                                                "/articles/edit/{id}", "/articles/update/{id}",
+                                                                "/articles/delete/{id}")
+                                                .hasRole("WRITER")
+
                                                 .requestMatchers("/register", "/", "/articles", "/images/**",
                                                                 "/articles/detail/**", "/categories/search/{id}",
                                                                 "/search/{id}", "/articles/search")
@@ -47,10 +52,12 @@ public class SecurityConfig {
 
                                                 .anyRequest().authenticated())
                                 .formLogin(form -> form
-                                                .loginPage("/login")
-                                                .loginProcessingUrl("/login")
-                                                .defaultSuccessUrl("/")
-                                                .permitAll())
+                                .loginPage("/login")
+                                .loginProcessingUrl("/login")
+                                .defaultSuccessUrl("/", true)
+                                .permitAll())
+
+                                
                                 .logout(logout -> logout
                                                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                                                 .permitAll())
