@@ -103,6 +103,29 @@ nav.navbar form input[type="search"] {
     letter-spacing: -.01em;
 }
 
+/* DETTAGLIO */
+div.container img {
+    display: block; 
+    height: 400px;
+    max-width: 550px; 
+    margin-right: auto; 
+    margin-left: auto;  
+    margin-bottom: 30px;
+    object-fit: contain;
+    background: #232d42;
+    border-radius: 8px;
+}
+
+.carousel-control-prev,
+.carousel-control-next,
+.carousel-indicators {
+    display: none;
+}
+
+
+
+
+
 /* MEDIA QUERY */
 @media (max-width: 575.98px) {
     .article-card__image {
