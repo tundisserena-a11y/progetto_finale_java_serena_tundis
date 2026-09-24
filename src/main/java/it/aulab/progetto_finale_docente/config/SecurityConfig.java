@@ -45,19 +45,18 @@ public class SecurityConfig {
                                                                 "/articles/delete/{id}")
                                                 .hasRole("WRITER")
 
-                                                .requestMatchers("/register", "/", "/articles", "/images/**",
+                                                .requestMatchers("/register", "/", "/articles", "/images/**", "/css/**",
                                                                 "/articles/detail/**", "/categories/search/{id}",
                                                                 "/search/{id}", "/articles/search")
                                                 .permitAll()
 
                                                 .anyRequest().authenticated())
                                 .formLogin(form -> form
-                                .loginPage("/login")
-                                .loginProcessingUrl("/login")
-                                .defaultSuccessUrl("/", true)
-                                .permitAll())
+                                                .loginPage("/login")
+                                                .loginProcessingUrl("/login")
+                                                .defaultSuccessUrl("/", true)
+                                                .permitAll())
 
-                                
                                 .logout(logout -> logout
                                                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                                                 .permitAll())

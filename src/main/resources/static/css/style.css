@@ -18,6 +18,12 @@ body {
     background: rgba(255, 255, 255, .96) !important;
 }
 
+nav.navbar form input[type="search"] {
+    min-width: 180px;
+}
+
+
+
 /* CARD */
 
 .article-card {
